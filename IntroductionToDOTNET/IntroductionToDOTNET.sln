@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes", "DataTypes\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shooter", "Shooter\Shooter.csproj", "{6D24CF62-9B32-4D23-B094-63DE466465CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrays", "Arrays\Arrays.csproj", "{D6042263-650E-4169-8E3E-3D2A5F622517}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6D24CF62-9B32-4D23-B094-63DE466465CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D24CF62-9B32-4D23-B094-63DE466465CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D24CF62-9B32-4D23-B094-63DE466465CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6042263-650E-4169-8E3E-3D2A5F622517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6042263-650E-4169-8E3E-3D2A5F622517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6042263-650E-4169-8E3E-3D2A5F622517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6042263-650E-4169-8E3E-3D2A5F622517}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
