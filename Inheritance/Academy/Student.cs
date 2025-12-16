@@ -23,14 +23,37 @@ namespace Academy
 			Attendance = attendance;
 			Console.WriteLine($"SConstructor:\t{GetHashCode()}");
 		}
+
+		public Student
+			(
+			AcademyMember academyMember, 
+			string group, double rating, double attendance
+			):base(academyMember)
+		{
+			Group = group;
+			Rating = rating;
+			Attendance = attendance;
+			Console.WriteLine($"SCostructor");
+		}
+		public Student(Student other) : base(other)
+		{
+			this.Group = other.Group;
+			this.Rating = other.Rating;
+			this.Attendance = other.Attendance;
+			Console.WriteLine($"SCopyConstructor:\t{this}");
+		}
 		~Student()
 		{
 			Console.WriteLine($"SDestructor:\t{GetHashCode()}");
 		}
-		public void Info()
+		public override void Info()
 		{
 			base.Info();
 			Console.WriteLine($"{Group} {Rating} {Attendance}");
+		}
+		public override string ToString()
+		{
+			return base.ToString() + $"{Group.PadRight(8)} {Rating.ToString().PadRight(8)} {Attendance.ToString().PadRight(8)}";
 		}
 	}
 }

@@ -2,9 +2,13 @@
 https://www.youtube.com/playlist?list=PLeqyOOqxeiIPslHOQpZjqNXiQ-l4I2ERD
 
 TODO:
-1. Написать класс 'Graduate', который описывает дипломника;
+1. Сохранить группу в CSV-файл (System.IO.StreamWriter);
+2. Загрузить группу из CSV-файла в массив (System.IO.StreamReader);
+
+DONE:
+1. Написать класс 'Graduate', который описывает дипломника;		DONE
 2. Подумать над тем, как можно сократить количество принимаемых и передаваемых 
-   параметров в конструкторах дочерних классов;
+   параметров в конструкторах дочерних классов;					DONE
 
 DONE:
 1. Перегрузить Increment/Decrement (++/--);

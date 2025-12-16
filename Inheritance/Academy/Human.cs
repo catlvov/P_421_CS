@@ -16,16 +16,28 @@ namespace Academy
 			LastName = lastName;
 			FirstName = firstName;
 			Age = age;
-			Console.WriteLine($"HConstructor:{GetHashCode()}");
+			Console.WriteLine($"HConstructor:\t{GetHashCode()}");
+		}
+		public Human(Human other)
+		{
+			this.LastName = other.LastName;
+			this.FirstName = other.FirstName;
+			this.Age = other.Age;
+			Console.WriteLine($"HCopyConstructor:\t{GetHashCode()}");
 		}
 		~Human()
 		{
-			Console.WriteLine($"HDestructor:{GetHashCode()}");
+			Console.WriteLine($"HDestructor:\t{GetHashCode()}");
 		}
 
-		public void Info()
+		public virtual void Info()
 		{
 			Console.WriteLine($"{LastName} {FirstName} {Age}");
+		}
+		public override string ToString()
+		{
+			return $"{base.ToString().Split('.').Last()}:".PadRight(12)  
+				+ $"{LastName.PadRight(12)} {FirstName.PadRight(12)} {Age.ToString().PadRight(5)}";
 		}
 	}
 }
