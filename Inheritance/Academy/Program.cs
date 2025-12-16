@@ -1,10 +1,14 @@
 ﻿//#define INHERITANCE_1
 //#define INHERITANCE_2
+//#difune POLYMORPHISM
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Academy
 {
@@ -48,6 +52,7 @@ namespace Academy
 			Graduate graduate = new Graduate(student, "Разработка приложения для службы международной доставки");
 			graduate.Info(); 
 #endif
+#if POLYMORPHISM
 			//Polymorphism
 			//1) Base class pointers;
 			//Upcast - преобразование объекта к базовому типу
@@ -56,21 +61,81 @@ namespace Academy
 				new Student("Гусев", "Савелий", 15, "РПО", "P_421", 90, 95),
 				new Teacher("Hoffman", "Wolf", 35, "Guitars", 15),
 				new Graduate("Чухарев", "Матвей", 16, "РПО", "P_421", 95, 97, "Разработка приложения для службы междунарожной доставки"),
-				new Teacher("Henriksson", "Martin", 32, "Bass", 12),
+                new Specialist("Львов", "Константин", 16, "РПО", "P_421", 100, 100, "фаловый менеджер", 13),
+                new Teacher("Henriksson", "Martin", 32, "Bass guitar", 12),
 				new Student("Абдрашитов", "Булат", 16, "РПО", "P_421", 98, 99)
 			};
-			Console.WriteLine(delimiter);
-			//2) Virtual methods;
-			//Позволяют уточнить информацию о объекте без выполнения Downcast
-			//virtual	override
-			for (int i = 0; i < group.Length; i++)
-			{
-				//group[i].Info();
-				Console.WriteLine(group[i]);
-			}
-			Console.WriteLine(delimiter);
 
-			//object.ToString();
+			Print(group);
+
+			Save(group, "P_421.csv");
+
+			load("P_421");
+		
+#endif
+			Human[] group = load("P_421.csv");
+			Console.WriteLine("end");
+		}
+		static void Print(Human[] group)
+		{
+            Console.WriteLine(delimiter);
+            //2) Virtual methods;
+            //Позволяют уточнить информацию о объекте без выполнения Downcast
+            //virtual	override
+            for (int i = 0; i < group.Length; i++)
+            {
+                //group[i].Info();
+                Console.WriteLine(group[i]);
+            }
+            Console.WriteLine(delimiter);
+        }
+		static void Save(Human[] group,string filename)
+		{
+            Directory.SetCurrentDirectory("..\\..");
+
+            Console.WriteLine(Directory.GetCurrentDirectory());
+
+            StreamWriter writer = new StreamWriter(filename); //поток автомотически открываеться при создании
+
+            //2) выпоняем апесь в поток
+            for (int i = 0; i < group.Length; i++)
+            {
+                writer.WriteLine(group[i].ToFileString() + ";");
+            }
+
+            //1.1) потоки обезательно надо закрывать 
+            writer.Close();
+
+            Process.Start("notepad", filename);
+        }
+		static Human[] load(string filename)
+		{
+			List<Human> group = new List<Human>();
+			try
+			{
+				Directory.SetCurrentDirectory("..\\..");
+                StreamReader reader = new StreamReader(filename);
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+					//Console.WriteLine(line);
+					String[] strings = line.Split(";,:".ToCharArray());
+					for (int i = 0;i < strings.Length;i++)
+					{
+						Console.Write($"{strings[i]}\t");
+					}
+
+                    Console.WriteLine();
+                }
+                reader.Close();
+            }
+			catch (Exception ex)
+			{
+
+				Console.WriteLine(ex.Message);
+			}
+
+			return group.ToArray();
 		}
 	}
 }
