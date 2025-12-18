@@ -74,73 +74,9 @@ namespace Academy
 		
 #endif
             Console.WriteLine(nameof(Student));
-            Human[] group = load("P_421.csv");
-            Print(group);
+            Human[] group = Streamer.load("P_421.csv");
+            Streamer.Print(group);
             Console.WriteLine("end");
-        }
-        static void Print(Human[] group)
-        {
-            Console.WriteLine(delimiter);
-            //2) Virtual methods;
-            //Позволяют уточнить информацию о объекте без выполнения Downcast
-            //virtual	override
-            for (int i = 0; i < group.Length; i++)
-            {
-                //group[i].Info();
-                Console.WriteLine(group[i]);
-            }
-            Console.WriteLine(delimiter);
-        }
-        static void Save(Human[] group, string filename)
-        {
-            Directory.SetCurrentDirectory("..\\..");
-
-            Console.WriteLine(Directory.GetCurrentDirectory());
-
-            StreamWriter writer = new StreamWriter(filename); //поток автомотически открываеться при создании
-
-            //2) выпоняем апесь в поток
-            for (int i = 0; i < group.Length; i++)
-            {
-                writer.WriteLine(group[i].ToFileString() + ";");
-            }
-
-            //1.1) потоки обезательно надо закрывать 
-            writer.Close();
-
-            Process.Start("notepad", filename);
-        }
-        static Human[] load(string filename)
-        {
-            List<Human> group = new List<Human>();
-            try
-            {
-                Directory.SetCurrentDirectory("..\\..");
-                StreamReader reader = new StreamReader(filename);
-                Factory factory = new Factory();
-                while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    //Console.WriteLine(line);
-                    String[] values = line.Split(";,:".ToCharArray());
-                    for (int i = 0; i < values.Length; i++)
-                    {
-                        Console.Write($"{values[i]}\t");
-                    }
-                    //десерализация это превращения сплошного потока даных например строки в объект .
-                    group.Add(factory.create(values[0]).Init(values));
-
-                    Console.WriteLine();
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
-            }
-
-            return group.ToArray();
         }
     }
 }
