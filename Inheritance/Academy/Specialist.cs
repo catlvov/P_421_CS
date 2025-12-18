@@ -23,7 +23,12 @@ namespace Academy
         }
             
         ~Specialist() { }
-
+        public override Human Init(string[] values)
+        {
+            base.Init(values);
+            Grade = Convert.ToInt32(values[9]);
+            return this;
+        }
         public override string ToString()
         {
             return base.ToString() + $" {Grade}";

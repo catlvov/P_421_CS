@@ -34,6 +34,13 @@ namespace Academy
 		{
 			Console.WriteLine($"AMDestructor:\t{GetHashCode()}");
 		}
+
+		public override Human Init(string[] values)
+		{
+			base.Init(values);
+			Speciality = values[4];
+			return this;
+		}
 		public override void Info()
 		{
 			base.Info();    //Ключевое слово 'base' охначает непосредственного родителя.

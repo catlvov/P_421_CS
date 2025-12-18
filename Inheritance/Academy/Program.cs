@@ -12,11 +12,11 @@ using System.Text.RegularExpressions;
 
 namespace Academy
 {
-	class Program
-	{
-		const string delimiter = "\n------------------------------------\n";
-		static void Main(string[] args)
-		{
+    class Program
+    {
+        const string delimiter = "\n------------------------------------\n";
+        static void Main(string[] args)
+        {
 #if INHERITANCE_1
 			Human human = new Human("Blackmore", "Ritchie", 32);
 			human.Info();
@@ -73,11 +73,13 @@ namespace Academy
 			load("P_421");
 		
 #endif
-			Human[] group = load("P_421.csv");
-			Console.WriteLine("end");
-		}
-		static void Print(Human[] group)
-		{
+            Console.WriteLine(nameof(Student));
+            Human[] group = load("P_421.csv");
+            Print(group);
+            Console.WriteLine("end");
+        }
+        static void Print(Human[] group)
+        {
             Console.WriteLine(delimiter);
             //2) Virtual methods;
             //Позволяют уточнить информацию о объекте без выполнения Downcast
@@ -89,8 +91,8 @@ namespace Academy
             }
             Console.WriteLine(delimiter);
         }
-		static void Save(Human[] group,string filename)
-		{
+        static void Save(Human[] group, string filename)
+        {
             Directory.SetCurrentDirectory("..\\..");
 
             Console.WriteLine(Directory.GetCurrentDirectory());
@@ -108,34 +110,37 @@ namespace Academy
 
             Process.Start("notepad", filename);
         }
-		static Human[] load(string filename)
-		{
-			List<Human> group = new List<Human>();
-			try
-			{
-				Directory.SetCurrentDirectory("..\\..");
+        static Human[] load(string filename)
+        {
+            List<Human> group = new List<Human>();
+            try
+            {
+                Directory.SetCurrentDirectory("..\\..");
                 StreamReader reader = new StreamReader(filename);
+                Factory factory = new Factory();
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-					//Console.WriteLine(line);
-					String[] strings = line.Split(";,:".ToCharArray());
-					for (int i = 0;i < strings.Length;i++)
-					{
-						Console.Write($"{strings[i]}\t");
-					}
+                    //Console.WriteLine(line);
+                    String[] values = line.Split(";,:".ToCharArray());
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        Console.Write($"{values[i]}\t");
+                    }
+                    //десерализация это превращения сплошного потока даных например строки в объект .
+                    group.Add(factory.create(values[0]).Init(values));
 
                     Console.WriteLine();
                 }
                 reader.Close();
             }
-			catch (Exception ex)
-			{
+            catch (Exception ex)
+            {
 
-				Console.WriteLine(ex.Message);
-			}
+                Console.WriteLine(ex.Message);
+            }
 
-			return group.ToArray();
-		}
-	}
+            return group.ToArray();
+        }
+    }
 }

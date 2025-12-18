@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Academy
 {
@@ -23,7 +24,13 @@ namespace Academy
 		{
 			Console.WriteLine($"TDestructor:{GetHashCode()}");
 		}
-		public override void Info()
+        public override Human Init(string[] values)
+        {
+            base.Init(values);
+            Experience = Convert.ToInt32(values[5]);
+            return this;
+        }
+        public override void Info()
 		{
 			base.Info();
 			Console.WriteLine(Experience);
