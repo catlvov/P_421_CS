@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{FA287620-6DAE-4603-A09A-5CD84C76405E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractBasseClass", "AbstractBasseClass\AbstractBasseClass.csproj", "{60D6FC8B-5829-4D0B-866C-312D819BAEBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FA287620-6DAE-4603-A09A-5CD84C76405E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA287620-6DAE-4603-A09A-5CD84C76405E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA287620-6DAE-4603-A09A-5CD84C76405E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D6FC8B-5829-4D0B-866C-312D819BAEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D6FC8B-5829-4D0B-866C-312D819BAEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D6FC8B-5829-4D0B-866C-312D819BAEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D6FC8B-5829-4D0B-866C-312D819BAEBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
