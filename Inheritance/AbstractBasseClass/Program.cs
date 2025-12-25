@@ -10,7 +10,8 @@ namespace AbstractBasseClass
     {
         static void Main(string[] args)
         {
-
+            Bike harley = new Bike();
+            harley.Move();
         }
     }
 }

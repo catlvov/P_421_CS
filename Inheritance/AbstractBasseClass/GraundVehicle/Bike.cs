@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AbstractBasseClass
 {
-    internal class Bake:ONRoad
+    internal class Bike:ONRoad
     {
         public override void Move()
         {
-            Console.WriteLine("Ездиет на двух колесахБ может перевозить не более 3 человек");
+            Console.WriteLine("Ездиет на двух колесах может перевозить не более 3 человек");
         }
     }
 }
