@@ -1,5 +1,4 @@
-﻿using Geometry.FIgura;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,27 +9,51 @@ using System.Runtime.InteropServices;
 
 namespace Geometry
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Square square = new Square(5, Color.Purple);
-            square.Info();
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			
+			IntPtr hwnd = GetConsoleWindow();	//Получаем окно консоли
+			Graphics graphics = Graphics.FromHwnd(hwnd);
+			System.Drawing.Rectangle window_rect = new System.Drawing.Rectangle	//Получаем прямоугольник окна консоли
+				(
+				Console.WindowLeft, Console.WindowTop,
+				Console.WindowWidth, Console.WindowHeight
+				);
+			PaintEventArgs e = new PaintEventArgs(graphics, window_rect);
 
-            IntPtr hwnd = GetConsoleWindow(); //получаем окно консоли
-            Graphics graphics = Graphics.FromHwnd(hwnd); //создаем объект 'graphics', на котором мы будем рисовать
-            Rectangle window_rect = new Rectangle //получаем прямоугольник угла консоли 
-                (
-                 Console.WindowLeft, Console.WindowTop,
-                 Console.WindowHeight , Console.WindowHeight
-                );
-            PaintEventArgs e = new PaintEventArgs( graphics,window_rect );
+			Pen pen = new Pen(Color.Red, 5);
+			e.Graphics.DrawRectangle(pen, -100, -100, 5000, 5000);
 
-            Pen pen = new Pen(Color.Purple, 5);
-            e.Graphics.DrawRectangle(pen, 20,150,100,100);
-        }
-        [DllImport("kernel32.dll")]//подключаем модуль OC windows
-        public static extern IntPtr GetConsoleWindow();
+			Square square = new Square(150, 200, 200, 1, Color.Red);
+			//Console.WriteLine($"Длина стороны квадрата: {square.Side}");
+			//Console.WriteLine($"Площадь квадрата: {square.GetArea()}");
+			//Console.WriteLine($"Периметр квадрата: {square.GetPerimeter()}");
+			//square.Draw();
+			square.Info(e);
 
-    }
+			Rectangle rectangle = new Rectangle(200, 150, 400, 200, 2, Color.Red);
+			rectangle.Info(e);
+
+			Circle circle = new Circle(150, 500, 100, 3, Color.Yellow);
+			circle.Info(e);
+
+			EquilateralTriangle equilateral = new EquilateralTriangle(100, 800, 300, 5, Color.Green);
+			equilateral.Info(e);
+
+			IsoscalesTriangle isoscales = new IsoscalesTriangle(100, 170, 800, 100, 1, Color.DarkBlue);
+			isoscales.Info(e);
+		}
+		[DllImport("kernel32.dll")]	//подключаем модуль ОС Windows
+		public static extern IntPtr GetConsoleWindow();	//и объявляем функцию из этого модуля
+	}
 }
+/*
+---------------------------------
+I....able (Имеет возможность, способен):
+IMovable - может перемещаться
+IFlyable - умеет летать
+ISortable - может быть отсортирован
+---------------------------------
+ */
